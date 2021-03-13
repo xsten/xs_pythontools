@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import json
+import sys
 
 # sanitize_json.py
 #
@@ -29,7 +30,8 @@ def stripwhite(text):
 
 
 # puts everything on one line
-toto='{\n"my key":{\n    "subkey":"subvalue",\n "subkey2": "subvalue2"},\n   "bobo":"bibi",}'
+# toto='{\n"my key":{\n    "subkey":"subvalue",\n "subkey2": "subvalue2"},\n   "bobo":"bibi",}'
+toto=sys.stdin.read()
 toto=toto.replace('\n','')
 # removes white spaces
 toto=stripwhite(toto)
@@ -43,7 +45,7 @@ try:
         print(json.dumps(toto_parsed,indent=1,sort_keys=True))
 except Exception as e:
         print('Error parsing:\n'+toto)
-        print('Exception caught:'+str(e))
+        print('\nException caught:\n'+str(e))
         exit(1)
 
 exit(0)
